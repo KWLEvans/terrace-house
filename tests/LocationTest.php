@@ -27,7 +27,7 @@
             $test_Location = new Location($name);
 
             //Act
-            $result = $test_Location->getLocation();
+            $result = $test_Location->getName();
 
             //Assert
             $this->assertEquals($name, $result);

@@ -2,23 +2,23 @@
 
     class Interest
     {
-        private $interest;
+        private $name;
         private $id;
 
-        function __construct($interest, $id = null)
+        function __construct($name, $id = null)
         {
-            $this->interest = $interest;
+            $this->name = $name;
             $this->id = $id;
         }
 
-        function setInterest($new_interest)
+        function setName($new_name)
         {
-            $this->interest = $new_interest;
+            $this->name = $new_name;
         }
 
-        function getInterest()
+        function getName()
         {
-            return $this->interest;
+            return $this->name;
         }
 
         function getId()
@@ -28,7 +28,7 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO interests (name) VALUES ('{$this->getInterest()}')");
+            $GLOBALS['DB']->exec("INSERT INTO interests (name) VALUES ('{$this->getName()}')");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 

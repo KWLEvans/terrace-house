@@ -27,7 +27,7 @@
             $test_Interest = new Interest($name);
 
             //Act
-            $result = $test_Interest->getInterest();
+            $result = $test_Interest->getName();
 
             //Assert
             $this->assertEquals($name, $result);

@@ -2,23 +2,23 @@
 
     class Location
     {
-        private $location;
+        private $name;
         private $id;
 
-        function __construct($location, $id = null)
+        function __construct($name, $id = null)
         {
-            $this->location = $location;
+            $this->name = $name;
             $this->id = $id;
         }
 
-        function setLocation($new_location)
+        function setName($new_name)
         {
-            $this->location = $new_location;
+            $this->name = $new_name;
         }
 
-        function getLocation()
+        function getName()
         {
-            return $this->location;
+            return $this->name;
         }
 
         function getId()
@@ -28,7 +28,7 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO locations (name) VALUES ('{$this->getLocation()}')");
+            $GLOBALS['DB']->exec("INSERT INTO locations (name) VALUES ('{$this->getName()}')");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
