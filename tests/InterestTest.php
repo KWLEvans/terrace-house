@@ -28,6 +28,20 @@
             //Assert
             $this->assertEquals($interest, $result);
         }
+
+        function test_getID()
+        {
+            //Arrange
+            $interest = "soccer";
+            $id = 1;
+            $test_Interest = new Interest($interest, $id);
+
+            //Act
+            $result = $test_Interest->getID();
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
+        }
     }
 
 ?>
