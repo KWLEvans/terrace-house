@@ -23,22 +23,22 @@
         function test_getInterest()
         {
             //Arrange
-            $interest = "soccer";
-            $test_Interest = new Interest($interest);
+            $name = "soccer";
+            $test_Interest = new Interest($name);
 
             //Act
             $result = $test_Interest->getInterest();
 
             //Assert
-            $this->assertEquals($interest, $result);
+            $this->assertEquals($name, $result);
         }
 
         function test_getID()
         {
             //Arrange
-            $interest = "soccer";
+            $name = "soccer";
             $id = 1;
-            $test_Interest = new Interest($interest, $id);
+            $test_Interest = new Interest($name, $id);
 
             //Act
             $result = $test_Interest->getID();
@@ -95,6 +95,7 @@
             //Assert
             $this->assertEquals([], $result);
         }
+
     }
 
 ?>

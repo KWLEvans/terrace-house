@@ -28,7 +28,7 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO interests (interest) VALUES ('{$this->getInterest()}')");
+            $GLOBALS['DB']->exec("INSERT INTO interests (name) VALUES ('{$this->getInterest()}')");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -37,7 +37,7 @@
             $returned_interests = $GLOBALS['DB']->query("SELECT * FROM interests");
             $interests_array = [];
             foreach ($returned_interests as $interests) {
-                $name = $interests['interest'];
+                $name = $interests['name'];
                 $id = $interests['id'];
                 $new_interest = new Interest($name, $id);
                 array_push($interests_array, $new_interest);
