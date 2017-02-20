@@ -60,6 +60,23 @@
             //Assert
             $this->assertEquals($test_Interest, $result[0]);
         }
+
+        function test_getAll()
+        {
+            //Arrange
+            $name = "soccer";
+            $name2 = "baseball";
+            $test_Interest = new Interest($name);
+            $test_Interest->save();
+            $test_Interest2 = new Interest($name2);
+            $test_Interest2->save();
+
+            //Act
+            $result = Interest::getAll();
+
+            //Assert
+            $this->assertEquals([$test_Interest, $test_Interest2], $result);
+        }
     }
 
 ?>
