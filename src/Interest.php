@@ -50,6 +50,19 @@
             $GLOBALS["DB"]->exec("DELETE FROM interests");
         }
 
+        static function find($search_id)
+        {
+            $return_interest = null;
+            $results = Interest::getAll();
+            foreach ($results as $result) {
+                $interest_id = $result->getId();
+                if ($interest_id == $search_id) {
+                    $return_interest = $result;
+                }
+            }
+            return $return_interest;
+        }
+
     }
 
 ?>

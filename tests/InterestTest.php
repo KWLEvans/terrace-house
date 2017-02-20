@@ -96,6 +96,23 @@
             $this->assertEquals([], $result);
         }
 
+        function test_find()
+        {
+            //Arrange
+            $name = "hair";
+            $name2 = "models";
+            $test_Interest = new Interest($name);
+            $test_Interest->save();
+            $test_Interest2 = new Interest($name2);
+            $test_Interest2->save();
+
+            //Act
+            $result = Interest::find($test_Interest->getId());
+
+            //Assert
+            $this->assertEquals($test_Interest, $result);
+        }
+
     }
 
 ?>
