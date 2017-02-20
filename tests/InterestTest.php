@@ -16,6 +16,10 @@
     class InterestTest extends PHPUnit_Framework_TestCase
     {
 
+        protected function tearDown() {
+            Interest::deleteAll();
+        }
+
         function test_getInterest()
         {
             //Arrange
@@ -41,6 +45,20 @@
 
             //Assert
             $this->assertEquals(true, is_numeric($result));
+        }
+
+        function test_save()
+        {
+            //Arrange
+            $name = 'soccer';
+            $test_Interest = new Interest($name);
+            $test_Interest->save();
+
+            //Act
+            $result = Interest::getAll();
+
+            //Assert
+            $this->assertEquals($test_Interest, $result[0]);
         }
     }
 

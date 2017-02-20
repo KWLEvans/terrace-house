@@ -21,9 +21,35 @@
             return $this->interest;
         }
 
-        function getId() {
+        function getId()
+        {
             return $this->id;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO interests (interest) VALUES ('{$this->getInterest()}')");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $returned_interests = $GLOBALS['DB']->query("SELECT * FROM interests");
+            $interests_array = [];
+            foreach ($returned_interests as $interests) {
+                $name = $interests['interest'];
+                $id = $interests['id'];
+                $new_interest = new Interest($name, $id);
+                array_push($interests_array, $new_interest);
+            }
+            return $interests_array;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS["DB"]->exec("DELETE FROM interests");
+        }
+
     }
 
 ?>
