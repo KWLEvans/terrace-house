@@ -118,15 +118,28 @@
 
         static function find($search_id)
         {
-            $return_location = null;
+            $return_house_mate = null;
             $results = HouseMate::getAll();
             foreach ($results as $result) {
-                $location_id = $result->getId();
-                if ($location_id == $search_id) {
-                    $return_location = $result;
+                $house_mate_id = $result->getId();
+                if ($house_mate_id == $search_id) {
+                    $return_house_mate = $result;
                 }
             }
-            return $return_location;
+            return $return_house_mate;
+        }
+
+        static function findByName($search_name)
+        {
+            $return_house_mate = null;
+            $results = HouseMate::getAll();
+            foreach ($results as $result) {
+                $house_mate_name = $result->getName();
+                if ($house_mate_name == $search_name) {
+                    $return_house_mate = $result;
+                }
+            }
+            return $return_house_mate;
         }
 
     }

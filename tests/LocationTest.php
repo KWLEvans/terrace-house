@@ -23,7 +23,7 @@
         function test_getLocation()
         {
             //Arrange
-            $name = "soccer";
+            $name = "Enoshima";
             $test_Location = new Location($name);
 
             //Act

@@ -63,6 +63,19 @@
             return $return_location;
         }
 
+        static function findByName($search_name)
+        {
+            $return_location = null;
+            $results = Location::getAll();
+            foreach ($results as $result) {
+                $location_name = $result->getName();
+                if ($location_name == $search_name) {
+                    $return_location = $result;
+                }
+            }
+            return $return_location;
+        }
+
     }
 
 ?>
