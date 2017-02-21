@@ -43,7 +43,17 @@
         }
         $new_Date = new Date($location, $male_id, $female_id, $heartbreak);
         $new_Date->save();
-        return $app['twig']->render('dates.html.twig', ['dates' => Date::getAll()]);
+        return $app['twig']->render('dates.html.twig', ['dates' => Date::export()]);
+    });
+
+    $app->get('/add_location', function() use ($app) {
+        return $app['twig']->render('add_location.html.twig');
+    });
+
+    $app->post('/locations', function() use ($app) {
+        $new_location = new Location($_POST['location']);
+        $new_location->save();
+        return $app['twig']->render('locations.html.twig', ['locations' => Location::getAll()]);
     });
 
     return $app;

@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dates{% endblock %}
+
+{% block content %}
+    {% for date in dates %}
+        {% if ((loop.index + 2) % 3) == 0 %}
+            <div class="row">
+        {% endif %}
+        <div class="col">
+            <h3>{{date.getMaleName()}} & {{date.getFemaleName()}}</h2>
+            <h5>{{date.getLocationName()}}</h3>
+        </div>
+        {% if (loop.index % 3) == 0 %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
