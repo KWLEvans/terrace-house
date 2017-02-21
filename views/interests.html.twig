@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Interests{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for interest in interests %}
+            <li>{{interest.getName()}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

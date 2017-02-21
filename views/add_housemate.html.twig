@@ -1,6 +1,35 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{% endblock %}
+{% block title %}Add Housemate{% endblock %}
 
 {% block content %}
+    <form class="form-group" action="/housemates" method="post">
+        <label for="name">Name:</label>
+        <input id="name" class="form-control" type="text" name="name" placeholder="Add a name...">
+
+        <label for="age">Age:</label>
+        <input id="age" class="form-control" type="number" name="age" placeholder="Add an age...">
+
+        <label for="profession">Profession:</label>
+        <input id="profession" class="form-control" type="text" name="profession" placeholder="Add a profession...">
+
+        <label for="gender">Gender:</label>
+        <label for="male">Male:</label>
+        <input id="male" class="form-control" type="radio" name="male" value="male">
+        <label for="female">Female</label>
+        <input id="female" class="form-control" type="radio" name="female" value="female">
+
+        <label for="interests">Interests:</label>
+        {% for interest in interests %}
+            <input id="{{interest.getName()}}" type="checkbox" name="{{interest.getName()}}" value="{{interest.getId()}}">
+            <label for="{{interest.getName()}}">{{interest.getName()}}</label>
+        {% endfor %}
+
+        <label for="week-joined">Weeks:</label>
+        <input id="week-joined" class="form-control" type="number" name="week-joined">
+        <label for="week-left">-</label>
+        <input id="week-left" class="form-control" type="number" name="week-left">
+
+        <button class="btn" type="submit" name="button">Add housemate!</button>
+    </form>
 {% endblock %}

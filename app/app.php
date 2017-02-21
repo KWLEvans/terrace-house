@@ -56,5 +56,47 @@
         return $app['twig']->render('locations.html.twig', ['locations' => Location::getAll()]);
     });
 
+    $app->get('/add_interest', function() use ($app) {
+        return $app['twig']->render('add_interest.html.twig');
+    });
+
+    $app->post('/interests', function() use ($app) {
+        $new_interest = new Interest($_POST['interest']);
+        $new_interest->save();
+        return $app['twig']->render('interests.html.twig', ['interests' => Interest::getAll()]);
+    });
+
+    $app->get('/add_housemate', function() use ($app) {
+        return $app['twig']->render('add_housemate.html.twig', ['interests' => Interest::getAll()]);
+    });
+
+    $app->get('/housemates', function() use ($app) {
+        return $app['twig']->render('housemates.html.twig', ['housemates' => HouseMate::getAll()]);
+    });
+
+    $app->post('/housemates', function() use ($app) {
+        $name = $_POST['name'];
+        $age = $_POST['age'];
+        $profession = $_POST['profession'];
+        $gender = $_POST['gender'];
+        $week_joined = $_POST['week_joined'];
+        $week_left = $_POST['week_left'];
+        $interests = [];
+
+        $all_interests = Interest::getAll();
+        foreach ($all_interests as $interest) {
+            if (array_key_exists($interest->getName(), $_POST['interest'])) {
+                array_push($interests, $interest->getId());
+            }
+        }
+
+        $new_HouseMate = new HouseMate($name, $age, $profession, $gender, $week_joined, $week_left);
+        $new_HouseMate->save();
+
+        // $new_HouseMate->addInterests();
+
+        return $app['twig']->render('housemates.html.twig', ['housemates' => HouseMate::getAll()]);
+    });
+
     return $app;
 ?>
