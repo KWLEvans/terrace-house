@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Add Date{% endblock %}
+
+{% block content %}
+    <form class="form-group add-input" action="/dates" method="post">
+        <label for="male">Male Housemate:</label>
+        <select id="male" class="form-control input-sizer" name="male">
+            {% for male in males %}
+            <option value='{{male.getId()}}'>{{male.getName()}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="female">Female Housemate:</label>
+        <select id="female" class="form-control input-sizer" name="female">
+            {% for female in females %}
+            <option value='{{female.getId()}}'>{{female.getName()}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="location">Date Location:</label>
+        <select id="location" class="form-control input-sizer" name="location">
+            {% for location in locations %}
+            <option value='{{location.getId()}}'>{{location.getName()}}</option>
+            {% endfor %}
+        </select>
+
+        <input id="heartbreak" class="form-control heartbreak-margin" type="checkbox" name="heartbreak" value="true">
+        <label for="heartbreak">Heartbreak</label>
+
+
+
+        <button class="btn" type="submit" name="button">Add Date!</button>
+    </form>
+{% endblock %}

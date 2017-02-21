@@ -142,6 +142,32 @@
             return $return_house_mate;
         }
 
+        static function getMales()
+        {
+            $males = [];
+            $results = HouseMate::getAll();
+            foreach ($results as $result) {
+                $house_mate_gender = $result->getGender();
+                if ($house_mate_gender == 'male') {
+                    array_push($males, $result);
+                }
+            }
+            return $males;
+        }
+
+        static function getFemales()
+        {
+            $females = [];
+            $results = HouseMate::getAll();
+            foreach ($results as $result) {
+                $house_mate_gender = $result->getGender();
+                if ($house_mate_gender == 'female') {
+                    array_push($females, $result);
+                }
+            }
+            return $females;
+        }
+
     }
 
 ?>

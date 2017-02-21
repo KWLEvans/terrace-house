@@ -2,3 +2,15 @@ img {
     width: 200px;
     height: auto;
 }
+
+.input-sizer {
+    width: 20%;
+}
+
+.heartbreak-margin {
+    margin-top: 10px;
+}
+
+#navbarDropdownMenuLink {
+  float: right !important;
+}

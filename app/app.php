@@ -23,5 +23,28 @@
         return $app['twig']->render("home.html.twig", ["housemates" => $house_mates]);
     });
 
+    $app->get('/add_date', function() use ($app) {
+        $males = HouseMate::getMales();
+        $females = HouseMate::getFemales();
+        $locations = Location::getAll();
+        return $app['twig']->render('add_date.html.twig', ['males' => $males, 'females' => $females, 'locations' => $locations]);
+    });
+
+    $app->post('/dates', function() use ($app) {
+        $location = $_POST['location'];
+        $male_id = $_POST['male'];
+        $female_id = $_POST['female'];
+        $heartbreak = null;
+        if (array_key_exists('heartbreak', $_POST)) {
+            $heartbreak = true;
+        }
+        else {
+            $heartbreak = false;
+        }
+        $new_Date = new Date($location, $male_id, $female_id, $heartbreak);
+        $new_Date->save();
+        return $app['twig']->render('dates.html.twig', ['dates' => Date::getAll()]);
+    });
+
     return $app;
 ?>
