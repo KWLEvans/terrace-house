@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="card-deck">
+        {% for housemate in housemates %}
+            <div class="card">
+                <img class="card-img-top" src="img/{{housemate.getName()}}.jpg">
+                <div class="card-block">
+                    <h4 class="card-title">{{housemate.getName()}}</h4>
+                    <ul>
+                        <li>Age: {{housemate.getAge()}}</li>
+                        <li>Profession: {{housemate.getProfession()}}</li>
+                        <li>Gender: {{housemate.getGender()}}</li>
+                        <li>Weeks: {{housemate.getWeekJoined()}}-{{housemate.getWeekLeft()}}</li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
