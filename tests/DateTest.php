@@ -50,7 +50,7 @@
             $test_Location->save();
 
             //Act
-            $test_Date = new Date($location_name, $name, $name2, true);
+            $test_Date = new Date($test_Location->getId(), $test_HouseMate->getId(), $test_HouseMate2->getId(), true);
 
             //Assert
             $this->assertEquals(true, is_numeric($test_Date->getLocationId()));
@@ -82,7 +82,7 @@
             $test_Location->save();
 
             //Act
-            $test_Date = new Date($location_name, $name, $name2, true);
+            $test_Date = new Date($test_Location->getId(), $test_HouseMate->getId(), $test_HouseMate2->getId(), true);
 
             //Assert
             $this->assertEquals(true, is_numeric($test_Date->getMaleId()));
@@ -114,7 +114,7 @@
             $test_Location->save();
 
             //Act
-            $test_Date = new Date($location_name, $name, $name2, true);
+            $test_Date = new Date($test_Location->getId(), $test_HouseMate->getId(), $test_HouseMate2->getId(), true);
 
             //Assert
             $this->assertEquals(true, is_numeric($test_Date->getFemaleId()));

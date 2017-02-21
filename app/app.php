@@ -30,6 +30,10 @@
         return $app['twig']->render('add_date.html.twig', ['males' => $males, 'females' => $females, 'locations' => $locations]);
     });
 
+    $app->get('/dates', function() use ($app) {
+        return $app['twig']->render('dates.html.twig', ['dates' => Date::export()]);
+    });
+
     $app->post('/dates', function() use ($app) {
         $location = $_POST['location'];
         $male_id = $_POST['male'];
@@ -79,16 +83,16 @@
         $age = $_POST['age'];
         $profession = $_POST['profession'];
         $gender = $_POST['gender'];
-        $week_joined = $_POST['week_joined'];
-        $week_left = $_POST['week_left'];
+        $week_joined = $_POST['week-joined'];
+        $week_left = $_POST['week-left'];
         $interests = [];
 
-        $all_interests = Interest::getAll();
-        foreach ($all_interests as $interest) {
-            if (array_key_exists($interest->getName(), $_POST['interest'])) {
-                array_push($interests, $interest->getId());
-            }
-        }
+        // $all_interests = Interest::getAll();
+        // foreach ($all_interests as $interest) {
+        //     if (array_key_exists($interest->getName(), $_POST['interest'])) {
+        //         array_push($interests, $interest->getId());
+        //     }
+        // }
 
         $new_HouseMate = new HouseMate($name, $age, $profession, $gender, $week_joined, $week_left);
         $new_HouseMate->save();

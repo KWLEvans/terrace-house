@@ -18,6 +18,7 @@
 
         protected function tearDown() {
             HouseMate::deleteAll();
+            Interest::deleteAll();
         }
 
         function test_getName()
@@ -248,6 +249,53 @@
             $this->assertEquals($test_HouseMate, $result);
         }
 
+        function test_addInterest()
+        {
+            //Arrange
+            $name = "Makoto";
+            $age = 22;
+            $profession = 'baseball player';
+            $gender = 'male';
+            $week_joined = 1;
+            $week_left = 11;
+            $test_HouseMate = new HouseMate($name, $age, $profession, $gender, $week_joined, $week_left);
+            $test_HouseMate->save();
+
+            $new_interest = new Interest("soccer");
+            $new_interest->save();
+
+            //Act
+            $test_HouseMate->addInterest($new_interest->getId());
+
+            //Assert
+            $this->assertEquals([$new_interest], $test_HouseMate->getInterests());
+        }
+
+        function test_getInterests()
+        {
+            //Arrange
+            $name = "Makoto";
+            $age = 22;
+            $profession = 'baseball player';
+            $gender = 'male';
+            $week_joined = 1;
+            $week_left = 11;
+            $test_HouseMate = new HouseMate($name, $age, $profession, $gender, $week_joined, $week_left);
+            $test_HouseMate->save();
+
+            $new_interest = new Interest("soccer");
+            $new_interest->save();
+
+            $new_interest2 = new Interest("modeling");
+            $new_interest2->save();
+
+            //Act
+            $test_HouseMate->addInterest($new_interest->getId());
+            $test_HouseMate->addInterest($new_interest2->getId());
+
+            //Assert
+            $this->assertEquals([$new_interest, $new_interest2], $test_HouseMate->getInterests());
+        }
     }
 
 ?>

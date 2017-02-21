@@ -8,9 +8,10 @@
         private $gender;
         private $week_joined;
         private $week_left;
+        private $interests = [];
         private $id;
 
-        function __construct($name, $age, $profession, $gender, $week_joined, $week_left, $id = null)
+        function __construct($name, $age, $profession, $gender, $week_joined, $week_left, $id = null, $interests = [])
         {
             $this->name = $name;
             $this->age = $age;
@@ -18,6 +19,7 @@
             $this->gender = $gender;
             $this->week_joined = $week_joined;
             $this->week_left = $week_left;
+            $this->interests = $interests;
             $this->id = $id;
         }
 
@@ -86,6 +88,31 @@
             return $this->id;
         }
 
+        function addInterest($interest_id)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO house_mates_interests (interest_id, house_mate_id) VALUES ({$interest_id}, {$this->getId()});");
+        }
+
+        function getInterests()
+        {
+            $query = $GLOBALS['DB']->query("SELECT interest_id FROM house_mates_interests WHERE house_mate_id = {$this->getId()};");
+            $interest_ids = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $interests = [];
+            foreach ($interest_ids as $id) {
+                $interest_id = $id['interest_id'];
+                $result = $GLOBALS['DB']->query("SELECT * FROM interests WHERE id = {$interest_id}");
+
+                $returned_interest = $result->fetchAll(PDO::FETCH_ASSOC);
+
+                $name = $returned_interest[0]['name'];
+                $id = $returned_interest[0]['id'];
+                $new_interest = new Interest($name, $id);
+                array_push($interests, $new_interest);
+            }
+            return $interests;
+        }
+
         function save()
         {
             $GLOBALS['DB']->exec(
@@ -96,6 +123,7 @@
         static function getAll()
         {
             $returned_house_mates = $GLOBALS['DB']->query("SELECT * FROM house_mates");
+
             $house_mates_array = [];
             foreach ($returned_house_mates as $house_mates) {
                 $name = $house_mates['name'];
