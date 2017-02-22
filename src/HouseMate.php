@@ -110,6 +110,7 @@
                 $new_interest = new Interest($name, $id);
                 array_push($interests, $new_interest);
             }
+            $this->interests = $interests;
             return $interests;
         }
 
@@ -119,6 +120,35 @@
             "INSERT INTO house_mates (name, age, profession, gender, week_joined, week_left) VALUES ('{$this->getName()}', {$this->getAge()}, '{$this->getProfession()}', '{$this->getGender()}', '{$this->getWeekJoined()}', '{$this->getWeekLeft()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
+
+        // function uploadImage(){
+        //     if(isset($_FILES['image'])){
+        //         $errors= array();
+        //         $file_name = $_FILES['image']['name'];
+        //         $file_size = $_FILES['image']['size'];
+        //         $file_tmp = $_FILES['image']['tmp_name'];
+        //         $file_type = $_FILES['image']['type'];
+        //         $exploded = explode('.',$_FILES['image']['name']);
+        //         $last_element = end($exploded);
+        //         $file_ext=strtolower($last_element);
+        //         $extensions = array("jpeg","jpg","png", "gif");
+        //         if(in_array($file_ext, $extensions)=== false){
+        //             $errors[] = "please upload only JPEG or PNG, GIF file.";
+        //         }
+        //         if($file_size > 2097152) {
+        //             $errors[] = 'File size must be less than 2 MB';
+        //         }
+        //         if(empty($errors)==true) {
+        //             move_uploaded_file($file_name, "img/".$this->getName());
+        //             echo "Success";
+        //             $img = $file_name;
+        //             return $img;
+        //         }
+        //         else {
+        //             print_r($errors);
+        //         }
+        //     }
+        // }
 
         static function getAll()
         {
@@ -194,6 +224,15 @@
                 }
             }
             return $females;
+        }
+
+        static function export()
+        {
+            $housemates = HouseMate::getAll();
+            foreach ($housemates as $housemate) {
+                $housemate->getInterests();
+            }
+            return $housemates;
         }
 
     }

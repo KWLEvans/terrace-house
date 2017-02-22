@@ -87,19 +87,25 @@
         $week_left = $_POST['week-left'];
         $interests = [];
 
-        // $all_interests = Interest::getAll();
-        // foreach ($all_interests as $interest) {
-        //     if (array_key_exists($interest->getName(), $_POST['interest'])) {
-        //         array_push($interests, $interest->getId());
-        //     }
-        // }
+        $all_interests = Interest::getAll();
+        foreach ($all_interests as $interest) {
+            if (isset($_POST[$interest->getName()]) && $_POST[$interest->getName()] == $interest->getId()) {
+                array_push($interests, $interest);
+            }
+        }
 
         $new_HouseMate = new HouseMate($name, $age, $profession, $gender, $week_joined, $week_left);
+
+        // $new_HouseMate->uploadImage();
         $new_HouseMate->save();
 
-        // $new_HouseMate->addInterests();
+        foreach ($interests as $interest) {
+            $new_HouseMate->addInterest($interest->getId());
+        }
 
-        return $app['twig']->render('housemates.html.twig', ['housemates' => HouseMate::getAll()]);
+
+
+        return $app['twig']->render('housemates.html.twig', ['housemates' => HouseMate::export()]);
     });
 
     return $app;

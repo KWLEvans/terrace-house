@@ -14,6 +14,13 @@
                         <li>Profession: {{housemate.getProfession()}}</li>
                         <li>Gender: {{housemate.getGender()}}</li>
                         <li>Weeks: {{housemate.getWeekJoined()}}-{{housemate.getWeekLeft()}}</li>
+                        {% if housemate.interests is iterable %}
+                        <li>Interests:<ul>
+                            {% for interest in housemate.interests %}
+                            <li>{{interest.getName()}}</li>
+                            {% endfor %}
+                        </ul></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
