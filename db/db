@@ -1,0 +1,195 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Feb 22, 2017 at 01:35 AM
+-- Server version: 5.5.42
+-- PHP Version: 5.6.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `terrace_house`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dates`
+--
+
+CREATE TABLE `dates` (
+  `id` bigint(20) unsigned NOT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `male_id` int(11) DEFAULT NULL,
+  `female_id` int(11) DEFAULT NULL,
+  `heartbreak` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `house_mates`
+--
+
+CREATE TABLE `house_mates` (
+  `id` bigint(20) unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `week_joined` int(11) DEFAULT NULL,
+  `week_left` int(11) DEFAULT NULL,
+  `gender` varchar(7) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `house_mates`
+--
+
+INSERT INTO `house_mates` (`id`, `name`, `age`, `profession`, `week_joined`, `week_left`, `gender`) VALUES
+(1, 'Makoto Hasegawa', 22, 'baseball player', 1, 11, 'male'),
+(2, 'Minori Nakada', 21, 'model', 1, 24, 'female'),
+(3, 'Yuki Adachi', 27, 'tap dancer', 1, 17, 'male'),
+(4, 'Mizuki Shida', 22, 'barista', 1, 17, 'female'),
+(5, 'Tatsuya Uchihara', 23, 'hair stylist', 1, 24, 'male'),
+(6, 'Yuriko Hayata', 23, 'medical student', 1, 23, 'female');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `house_mates_interests`
+--
+
+CREATE TABLE `house_mates_interests` (
+  `id` bigint(20) unsigned NOT NULL,
+  `house_mate_id` int(11) DEFAULT NULL,
+  `interest_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `house_mates_interests`
+--
+
+INSERT INTO `house_mates_interests` (`id`, `house_mate_id`, `interest_id`) VALUES
+(1, 30, 2),
+(2, 31, 2),
+(3, 32, 2),
+(4, 33, 2),
+(5, 34, 2),
+(6, 35, 1),
+(7, 35, 2),
+(8, 36, 1),
+(9, 36, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `interests`
+--
+
+CREATE TABLE `interests` (
+  `id` bigint(20) unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `interests`
+--
+
+INSERT INTO `interests` (`id`, `name`) VALUES
+(1, 'Soccer'),
+(2, 'modeling'),
+(3, 'hair'),
+(4, 'being a literal cat');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locations`
+--
+
+CREATE TABLE `locations` (
+  `id` bigint(20) unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`id`, `name`) VALUES
+(1, 'Enoshima'),
+(2, 'Tokyo Disney'),
+(3, 'Mt. Fuji'),
+(4, 'Places');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `dates`
+--
+ALTER TABLE `dates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `house_mates`
+--
+ALTER TABLE `house_mates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `house_mates_interests`
+--
+ALTER TABLE `house_mates_interests`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `interests`
+--
+ALTER TABLE `interests`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `dates`
+--
+ALTER TABLE `dates`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `house_mates`
+--
+ALTER TABLE `house_mates`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+--
+-- AUTO_INCREMENT for table `house_mates_interests`
+--
+ALTER TABLE `house_mates_interests`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `interests`
+--
+ALTER TABLE `interests`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;

@@ -121,6 +121,8 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        
+
         // function uploadImage(){
         //     if(isset($_FILES['image'])){
         //         $errors= array();
